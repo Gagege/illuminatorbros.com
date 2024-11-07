@@ -1,12 +1,12 @@
 # Site settings
 title: Illuminator Brothers
-email:
+email: gage@illuminatorbros.com
 description: > # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "" # the base hostname & protocol for your site
+url: "https://illuminatorbros.com" # the base hostname & protocol for your site
 
-twitter_username:
-github_username:
+twitter_username: illuminatorbros
+github_username: illuminatorbros
 
 # Build settings
 markdown: kramdown
