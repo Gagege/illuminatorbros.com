@@ -1,6 +1,6 @@
 # Site settings
 title: Illuminator Brothers
-email: gage@illuminatorbros.com
+email: contact@illuminatorbros.com
 description: > # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://illuminatorbros.com" # the base hostname & protocol for your site
