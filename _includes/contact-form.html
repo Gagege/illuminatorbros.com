@@ -1,0 +1,30 @@
+<section id="contact-form" class="bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <form action="https://formspree.io/f/xdkozodk" method="POST" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Home Address</label>
+                        <input type="text" name="address" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Additional Details (optional)</label>
+                        <textarea name="message" class="form-control" rows="3"></textarea>
+                    </div>
+                    <input type="hidden" name="_subject" value="New Estimate Request">
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-xl">Request Estimate</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
