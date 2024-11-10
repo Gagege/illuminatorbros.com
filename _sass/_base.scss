@@ -394,3 +394,17 @@ body {
   height: 48px;
   margin-top: 8px;
 }
+
+footer {
+  padding: 20px 0;
+  margin-top: 30px;
+
+  p {
+    margin-bottom: 0;
+
+    &.small {
+      font-size: 12px;
+      margin-top: 10px;
+    }
+  }
+}
