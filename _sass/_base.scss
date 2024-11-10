@@ -165,7 +165,7 @@ header {
     width: 100%;
     .header-content-inner {
       padding: 32px;
-      background-color: rgba(0, 0, 0, 0.75);
+      background-color: rgba(0, 0, 0, 0.85);
       border-radius: 32px;
       h1 {
         font-weight: 700;
@@ -407,4 +407,17 @@ footer {
       margin-top: 10px;
     }
   }
+}
+
+.location-subtitle {
+  font-size: 24px;
+  margin: 10px 0 20px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+}
+
+.service-area {
+  font-size: 18px;
+  margin-top: 15px;
+  font-style: italic;
 }
