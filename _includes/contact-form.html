@@ -1,38 +1,97 @@
-<section id="contact-form" class="bg-dark">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2>Ready to Light Up Your Christmas?</h2>
-                <p class="text-faded">Fill out this quick form to get your free estimate. We'll help create a custom
-                    lighting plan that brings joy to your home this Christmas!</p>
-                <hr class="light">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <form action="https://formspree.io/f/xdkozodk" method="POST" class="contact-form" id="estimateForm">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" name="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" name="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Home Address</label>
-                        <input type="text" name="address" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Additional Details (optional)</label>
-                        <textarea name="message" class="form-control" rows="3"></textarea>
-                    </div>
-                    <input type="hidden" name="_subject" value="New Estimate Request">
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary btn-xl">Request Estimate</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+<section class="section section--night estimate" id="contact-form" aria-labelledby="estimate-title">
+  {% include light-string.html %}
+  <div class="glow glow--gold glow--left" aria-hidden="true"></div>
+
+  <div class="container estimate__grid">
+    <div class="estimate__copy">
+      <p class="eyebrow eyebrow--glow reveal">Free estimate</p>
+      <h2 class="section-title reveal" id="estimate-title">Ready to light up your&nbsp;Christmas?</h2>
+      <p class="lead reveal">
+        Fill out this quick form to get your free estimate. We'll help create a custom lighting plan that brings
+        joy to your home this Christmas!
+      </p>
+
+      <ol class="steps reveal">
+        <li><span>1</span><div><strong>Tell us about your home</strong>It only takes a minute.</div></li>
+        <li><span>2</span><div><strong>Get your custom lighting plan</strong>We'll design a display around your home and style.</div></li>
+        <li><span>3</span><div><strong>Enjoy the glow</strong>We install, maintain, and take it all down in the new year.</div></li>
+      </ol>
+
+      <ul class="contact-list reveal" aria-label="Other ways to reach us">
+        {% if site.phone and site.phone != "" %}
+        <li><a href="tel:{{ site.phone | remove: ' ' | remove: '-' | remove: '(' | remove: ')' | remove: '.' }}"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>{{ site.phone }}</a></li>
+        {% endif %}
+        <li><a href="mailto:{{ site.email }}"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>{{ site.email }}</a></li>
+        <li><a href="https://www.facebook.com/{{ site.facebook_username }}" rel="noopener" target="_blank"><svg class="icon" aria-hidden="true"><use href="#i-facebook"/></svg>Facebook<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+        <li><a href="https://www.instagram.com/{{ site.instagram_username }}" rel="noopener" target="_blank"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>Instagram<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+      </ul>
     </div>
+
+    <div class="estimate__card reveal">
+      <form class="form" action="{{ site.formspree_endpoint }}" method="POST" id="estimateForm" data-estimate-form data-email="{{ site.email }}">
+        <div class="form__header">
+          <h3>Request your free estimate</h3>
+          <p>No cost, no obligation.</p>
+        </div>
+
+        <div class="form__row">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" autocomplete="email" required>
+          </div>
+        </div>
+
+        <div class="form__row">
+          <div class="field">
+            <label for="phone">Phone <span class="field__optional">(optional)</span></label>
+            <input id="phone" type="tel" name="phone" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="style">Preferred look <span class="field__optional">(optional)</span></label>
+            <div class="select">
+              <select id="style" name="preferred_style" data-style-select>
+                <option value="">Not sure yet</option>
+                <option value="Warm white">Warm white</option>
+                <option value="Multicolor">Multicolor</option>
+                <option value="Cool white">Cool white</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="address">Home or business address</label>
+          <input id="address" type="text" name="address" autocomplete="street-address" required>
+        </div>
+
+        <div class="field">
+          <label for="message">Additional details <span class="field__optional">(optional)</span></label>
+          <textarea id="message" name="message" rows="3" placeholder="Rooflines, trees, timing, anything we should know"></textarea>
+        </div>
+
+        <input type="hidden" name="_subject" value="New Estimate Request">
+        <div class="visually-hidden" aria-hidden="true">
+          <label for="gotcha">Leave this field empty</label>
+          <input id="gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--lg btn--block" data-submit>
+          <span>Request my free estimate</span>
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </button>
+        <p class="form__status" role="status" aria-live="polite" data-form-status></p>
+      </form>
+
+      <div class="form-success" data-form-success hidden tabindex="-1">
+        <div class="form-success__bulbs" aria-hidden="true"><span></span><span></span><span></span></div>
+        <h3>Thanks! Your request is in.</h3>
+        <p>We'll be in touch soon to start planning your display. Get ready to be the brightest home on the block!</p>
+        <button type="button" class="btn btn--ghost-dark" data-form-reset>Send another request</button>
+      </div>
+    </div>
+  </div>
 </section>

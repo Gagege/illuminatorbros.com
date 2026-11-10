@@ -1,0 +1,17 @@
+# Shown in the "What's included" section, in this order.
+# icon: one of palette, bulb, ladder, calendar (see _includes/icons.html)
+- title: Design consultation
+  icon: palette
+  text: We'll work directly with you to design a festive display that fits your home and your style.
+
+- title: Light leasing
+  icon: bulb
+  text: Have the brightest home on the block with our professional-grade Christmas lights. No need to buy your own.
+
+- title: Installation
+  icon: ladder
+  text: No need to worry about installing or maintaining your lights. Stay off the ladder and leave it all to us!
+
+- title: Removal
+  icon: calendar
+  text: We'll come back and take everything down sometime in the new year. Just tell us when!

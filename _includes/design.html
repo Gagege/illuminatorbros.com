@@ -1,0 +1,111 @@
+<section class="section section--frost design" id="design" aria-labelledby="design-title">
+  <div class="container design__grid">
+    <div class="design__copy">
+      <p class="eyebrow reveal">Design your display</p>
+      <h2 class="section-title reveal" id="design-title">Warm and timeless, or bright and&nbsp;colorful?</h2>
+      <p class="lead reveal">
+        Every display is custom designed with you during your free consultation. Flip the switch and try a few
+        looks, then we'll bring your favorite to life.
+      </p>
+      <div class="design__cta reveal">
+        <a class="btn btn--dark btn--lg" href="#contact-form" data-studio-cta>
+          Plan my display
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="studio reveal" data-studio data-mode="warm">
+      <svg class="studio__art" viewBox="0 0 640 420" role="img" aria-labelledby="studio-art-title">
+        <title id="studio-art-title">Illustration of a house outlined with Christmas lights</title>
+        <defs>
+          <filter id="bulb-glow" filterUnits="userSpaceOnUse" x="0" y="0" width="640" height="420">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3.2" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <radialGradient id="studio-ambient">
+            <stop offset="0" style="stop-color: var(--ambient)" stop-opacity=".75"/>
+            <stop offset="1" style="stop-color: var(--ambient)" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="studio-window" cx="50%" cy="40%" r="70%">
+            <stop offset="0" stop-color="#ffe2a3"/>
+            <stop offset="1" stop-color="#f0a94c"/>
+          </radialGradient>
+          <mask id="moon-mask">
+            <rect width="640" height="420" fill="#fff"/>
+            <circle cx="571" cy="57" r="22" fill="#000"/>
+          </mask>
+        </defs>
+
+        <g class="studio__stars" fill="#fff">
+          <circle cx="36" cy="48" r="1.3"/><circle cx="98" cy="100" r="1"/><circle cx="150" cy="36" r="1.5"/>
+          <circle cx="214" cy="78" r="1"/><circle cx="252" cy="28" r="1.2"/><circle cx="356" cy="44" r="1"/>
+          <circle cx="424" cy="76" r="1.4"/><circle cx="476" cy="30" r="1"/><circle cx="508" cy="128" r="1.1"/>
+          <circle cx="616" cy="142" r="1"/><circle cx="604" cy="22" r="1.2"/><circle cx="186" cy="148" r="1"/>
+          <circle cx="28" cy="138" r="1"/><circle cx="330" cy="18" r="1"/><circle cx="560" cy="180" r="1.1"/>
+        </g>
+        <circle cx="560" cy="66" r="24" fill="#f6f0dc" mask="url(#moon-mask)"/>
+
+        <path d="M0 312C120 280 220 292 330 306s210-20 310-6v120H0Z" fill="#121b35"/>
+        <ellipse class="studio__ambient" cx="320" cy="300" rx="320" ry="150" fill="url(#studio-ambient)"/>
+
+        <rect x="70" y="338" width="12" height="18" fill="#2a1d14"/>
+        <path d="M76 168 114 236H38ZM76 200l48 86H28ZM76 244l58 100H18Z" fill="#11302a"/>
+
+        <rect x="392" y="116" width="26" height="70" fill="#172039"/>
+        <rect x="387" y="109" width="36" height="9" rx="2" fill="#202b4d"/>
+
+        <rect x="446" y="248" width="124" height="108" fill="#19223f"/>
+        <path d="M434 254 508 206l74 48Z" fill="#0d1428"/>
+        <rect x="468" y="284" width="80" height="72" rx="3" fill="#111831"/>
+        <path d="M468 302h80M468 320h80M468 338h80" stroke="#1f294a" stroke-width="2"/>
+
+        <rect x="148" y="206" width="304" height="150" fill="#1c2645"/>
+        <path d="M124 214 300 96l176 118Z" fill="#0e152a"/>
+        <path d="M124 214 300 96l176 118M452 242.3 508 206l74 48" fill="none" stroke="#e8eef9" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" opacity=".9"/>
+
+        <circle cx="300" cy="166" r="17" fill="url(#studio-window)"/>
+        <path d="M300 149v34M283 166h34" stroke="#0e152a" stroke-width="3"/>
+        <rect x="178" y="236" width="58" height="54" rx="3" fill="url(#studio-window)"/>
+        <rect x="364" y="236" width="58" height="54" rx="3" fill="url(#studio-window)"/>
+        <path d="M207 236v54M178 263h58M393 236v54M364 263h58" stroke="#1c2645" stroke-width="3"/>
+        <path d="M172 292h70M358 292h70" stroke="#e8eef9" stroke-width="4" stroke-linecap="round" opacity=".85"/>
+
+        <path d="M280 356v-64a20 20 0 0 1 40 0v64Z" fill="#46301f"/>
+        <circle cx="300" cy="306" r="10.5" fill="none" stroke="#1f7a46" stroke-width="5"/>
+        <path d="m293 318 7-4 7 4-7-1.5Z" fill="#e23b3b"/>
+        <circle cx="312" cy="330" r="1.8" fill="#d9b26a"/>
+
+        <ellipse cx="206" cy="352" rx="42" ry="21" fill="#11302a"/>
+        <ellipse cx="394" cy="352" rx="42" ry="21" fill="#11302a"/>
+
+        <path d="M0 356c140-10 500-10 640 0v64H0Z" fill="#dde6f4"/>
+        <path d="M282 356h36l42 64H240Z" fill="#bcc8de"/>
+
+        <g class="studio__wires" fill="none" stroke="#070b16" stroke-width="1.3" stroke-opacity=".55">
+          <path data-lights="16" d="M124 214 300 96l176 118"/>
+          <path data-lights="16" d="M452 242.3 508 206l74 48"/>
+          <path data-lights="13" data-r="2.8" d="M60 204q16 9 34-4M52 226q24 13 52-4M48 252q28 13 58-6M40 274q36 18 74-4M40 298q36 15 74-6M28 334q48 18 98-4"/>
+          <path data-lights="12" data-r="3" d="M168 348q38-30 76 0M356 348q38-30 76 0"/>
+          <path data-lights="21" data-r="4.6" d="M276 368l-30 46M324 368l30 46"/>
+        </g>
+        <g class="studio__bulbs" filter="url(#bulb-glow)" data-studio-bulbs></g>
+        <path class="studio__star" d="m76 150 4.4 8.9 9.8 1.4-7.1 6.9 1.7 9.8-8.8-4.6-8.8 4.6 1.7-9.8-7.1-6.9 9.8-1.4Z"/>
+      </svg>
+
+      <div class="studio__toolbar">
+        <button class="switch" type="button" role="switch" aria-checked="false" data-studio-switch>
+          <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+          <span class="switch__label">Lights</span>
+          <span class="switch__state" aria-hidden="true">Off</span>
+        </button>
+        <fieldset class="segmented">
+          <legend class="visually-hidden">Light style</legend>
+          <label><input type="radio" name="studio-style" value="warm" checked><span>Warm white</span></label>
+          <label><input type="radio" name="studio-style" value="multi"><span>Multicolor</span></label>
+          <label><input type="radio" name="studio-style" value="cool"><span>Cool white</span></label>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</section>
