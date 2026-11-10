@@ -1,42 +1,34 @@
-<section id="services">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Comprehensive Service, No Extra Cost</h2>
-                <hr class="primary">
-            </div>
-        </div>
+<section class="section section--night services" id="services" aria-labelledby="services-title">
+  {% include light-string.html %}
+  <div class="glow glow--gold" aria-hidden="true"></div>
+  <div class="glow glow--red" aria-hidden="true"></div>
+
+  <div class="container">
+    <div class="section-head section-head--center">
+      <p class="eyebrow eyebrow--glow reveal">What's included</p>
+      <h2 class="section-title reveal" id="services-title">Comprehensive service. No extra&nbsp;cost.</h2>
+      <p class="lead reveal">One simple package covers your whole display, from the first sketch to the final takedown.</p>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box">
-                    <i class="fa fa-4x fa-pencil-square-o wow bounceIn text-primary"></i>
-                    <h3>Design Consultation</h3>
-                    <p class="text-muted">We'll work directly with you to design a festive holiday display for your home.</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box">
-                    <i class="fa fa-4x fa-lightbulb-o wow bounceIn text-primary" data-wow-delay=".1s"></i>
-                    <h3>Light Leasing</h3>
-                    <p class="text-muted">Have the brightest home on the block with our professional-grade Christmas lights.</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box">
-                    <i class="fa fa-4x fa-wrench wow bounceIn text-primary" data-wow-delay=".2s"></i>
-                    <h3>Installation</h3>
-                    <p class="text-muted">No need to worry about installing or maintaining your lights. Leave it all to us!</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box">
-                    <i class="fa fa-4x fa-long-arrow-down wow bounceIn text-primary" data-wow-delay=".3s"></i>
-                    <h3>Removal</h3>
-                    <p class="text-muted">We'll come back and remove your lights sometime in the new year. Just tell us when!</p>
-                </div>
-            </div>
-        </div>
+
+    <ol class="service-grid">
+      {% for service in site.data.services %}
+      <li class="service-card reveal" style="--delay: {{ forloop.index0 | times: 90 }}ms">
+        <span class="service-card__step">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+        <span class="service-card__icon" aria-hidden="true">
+          <svg class="icon"><use href="#i-{{ service.icon }}"/></svg>
+        </span>
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.text }}</p>
+      </li>
+      {% endfor %}
+    </ol>
+
+    <div class="services__cta reveal">
+      <p>Ready to be the brightest home on the block?</p>
+      <a class="btn btn--primary" href="#contact-form">
+        Get your free estimate
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
     </div>
+  </div>
 </section>

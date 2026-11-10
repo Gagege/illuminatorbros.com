@@ -1,0 +1,24 @@
+<section class="section section--snow faq" id="faq" aria-labelledby="faq-title">
+  <div class="container faq__grid">
+    <div class="faq__intro">
+      <p class="eyebrow reveal">FAQ</p>
+      <h2 class="section-title reveal" id="faq-title">Questions? We've got&nbsp;answers.</h2>
+      <p class="lead reveal">
+        Don't see yours here? Email us at
+        <a href="mailto:{{ site.email }}">{{ site.email }}</a> and we'll be happy to help.
+      </p>
+    </div>
+
+    <div class="faq__list reveal">
+      {% for item in site.data.faq %}
+      <details class="faq__item"{% if forloop.first %} open{% endif %}>
+        <summary>
+          <span>{{ item.question }}</span>
+          <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
+        </summary>
+        <p>{{ item.answer }}</p>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>

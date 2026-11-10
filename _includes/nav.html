@@ -1,35 +1,33 @@
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand page-scroll" href="#page-top">Illuminator Brothers</a>
-        </div>
+{%- assign home = '/' | relative_url -%}
+<header class="site-nav" data-nav>
+  <div class="container site-nav__inner">
+    <a class="brand" href="{{ home }}#top" aria-label="{{ site.title }} home">
+      <svg class="brand__mark" aria-hidden="true"><use href="#brand-mark"/></svg>
+      <span class="brand__name">Illuminator <span>Brothers</span></span>
+    </a>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a class="page-scroll" href="#about">About</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#services">Services</a>
-                </li>
-               <!-- <li>
-                    <a class="page-scroll" href="#portfolio">Portfolio</a>
-                </li> -->
-               <li>
-                    <a class="page-scroll" href="#contact">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
+    <nav class="site-nav__menu" id="site-menu" aria-label="Main">
+      <ul class="site-nav__links">
+        <li><a href="{{ home }}#about">About</a></li>
+        <li><a href="{{ home }}#services">Services</a></li>
+        <li><a href="{{ home }}#design">Design</a></li>
+        <li><a href="{{ home }}#faq">FAQ</a></li>
+        <li><a href="{{ home }}#contact">Contact</a></li>
+      </ul>
+      <div class="site-nav__actions">
+        {% if site.phone and site.phone != "" %}
+        <a class="btn btn--ghost btn--sm" href="tel:{{ site.phone | remove: ' ' | remove: '-' | remove: '(' | remove: ')' | remove: '.' }}">
+          <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>{{ site.phone }}
+        </a>
+        {% endif %}
+        <a class="btn btn--primary btn--sm" href="{{ home }}#contact-form">Free estimate</a>
+      </div>
+    </nav>
+
+    <button class="nav-toggle" type="button" aria-controls="site-menu" aria-expanded="false" data-nav-toggle>
+      <span class="visually-hidden">Menu</span>
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+    </button>
+  </div>
+</header>

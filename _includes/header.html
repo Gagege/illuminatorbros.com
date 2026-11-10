@@ -1,13 +1,41 @@
-<header>
-    <div class="header-content">
-        <div class="header-content-inner">
-            <h1>Need Christmas Lights?</h1>
-            <h2 class="location-subtitle">Call Moscow, Idaho's Local Christmas light installers!</h2>
-            <hr>
-            <p>Let us transform your home or business into a winter wonderland with a professional Christmas light installation
-                that will delight your family and neighbors!</p>
-            <p class="service-area">Serving Moscow, Pullman, and surrounding Palouse communities</p>
-            <a href="#contact-form" class="btn btn-primary btn-xl page-scroll">Get Your Free Estimate</a>
-        </div>
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="hero__media" aria-hidden="true">
+    <picture>
+      <source type="image/webp" srcset="{{ '/assets/img/hero-1200.webp' | relative_url }} 1200w, {{ '/assets/img/hero-2000.webp' | relative_url }} 2000w" sizes="100vw">
+      <img src="{{ '/assets/img/hero-2000.jpg' | relative_url }}" srcset="{{ '/assets/img/hero-1200.jpg' | relative_url }} 1200w, {{ '/assets/img/hero-2000.jpg' | relative_url }} 2000w" sizes="100vw" width="2000" height="1121" alt="" fetchpriority="high" decoding="async">
+    </picture>
+    <canvas class="hero__snow" data-snow></canvas>
+  </div>
+
+  <div class="container hero__content">
+    <p class="pill reveal">
+      <span class="pill__dot" aria-hidden="true"></span>
+      <span>Now booking for Christmas <span data-current-year>{{ site.time | date: '%Y' }}</span></span>
+    </p>
+    <h1 class="hero__title reveal" id="hero-title">Need Christmas lights? <em>Leave it to&nbsp;us.</em></h1>
+    <p class="hero__lead reveal">
+      Moscow, Idaho's local Christmas light installers. Let us transform your home or business into a winter
+      wonderland with a professional installation that will delight your family and neighbors!
+    </p>
+    <div class="hero__actions reveal">
+      <a class="btn btn--primary btn--lg" href="#contact-form">
+        Get your free estimate
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+      <a class="btn btn--ghost btn--lg" href="#services">See what's included</a>
     </div>
-</header>
+    <p class="hero__area reveal">
+      <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>
+      Serving {{ site.service_area }}
+    </p>
+  </div>
+
+  <div class="container">
+    <ul class="hero__perks reveal" aria-label="Why homeowners choose us">
+      <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Free estimates</li>
+      <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Professional-grade lights included</li>
+      <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Installed &amp; maintained</li>
+      <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Takedown included</li>
+    </ul>
+  </div>
+</section>

@@ -1,37 +1,75 @@
+{%- capture page_title -%}
+  {%- if page.title -%}{{ page.title }} | {{ site.title }}{%- else -%}Christmas Light Installation in Moscow, ID &amp; Pullman, WA | {{ site.title }}{%- endif -%}
+{%- endcapture -%}
+{%- assign page_description = page.description | default: site.description | strip_newlines | strip -%}
+{%- assign canonical = page.url | replace: 'index.html', '' | absolute_url -%}
+{%- assign asset_version = site.time | date: '%s' -%}
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{ page_title }}</title>
+  <meta name="description" content="{{ page_description }}">
+  <link rel="canonical" href="{{ canonical }}">
+  <meta name="theme-color" content="#0a1020">
+  {% if page.noindex %}<meta name="robots" content="noindex">{% endif %}
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"
-        content="Professional Christmas light installation in Moscow, Idaho and the Palouse region. Transform your home with our professional Christmas lighting services.">
-    <meta name="author" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:title" content="{{ page_title }}">
+  <meta property="og:description" content="{{ page_description }}">
+  <meta property="og:url" content="{{ canonical }}">
+  <meta property="og:image" content="{{ '/assets/img/og-image.jpg' | absolute_url }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="A home glowing with professionally installed warm white Christmas lights">
+  <meta name="twitter:card" content="summary_large_image">
 
-    <title>Illuminator Brothers - Christmas Light Installation</title>
+  <link rel="icon" href="{{ '/favicon.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="icon" href="{{ '/favicon.png' | relative_url }}" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | relative_url }}">
 
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,30;1,9..144,400..700,30&family=Plus+Jakarta+Sans:wght@400..800&display=swap">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ asset_version }}">
+  {% if page.preload_hero %}
+  <link rel="preload" as="image" type="image/webp" imagesrcset="{{ '/assets/img/hero-1200.webp' | relative_url }} 1200w, {{ '/assets/img/hero-2000.webp' | relative_url }} 2000w" imagesizes="100vw" fetchpriority="high">
+  {% endif %}
 
-    <!-- Custom Fonts -->
-    <link
-        href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-        rel='stylesheet' type='text/css'>
-    <link
-        href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
-        rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+  <script>
+    document.documentElement.classList.add('js', 'reveal-on');
+    setTimeout(function () { if (!window.IB_READY) document.documentElement.classList.remove('reveal-on'); }, 3000);
+  </script>
 
-    <!-- Plugin CSS -->
-    <link rel="stylesheet" href="css/animate.min.css" type="text/css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/main.css" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "{{ '/' | absolute_url }}#business",
+    "name": {{ site.title | jsonify }},
+    "description": {{ site.description | strip_newlines | strip | jsonify }},
+    "url": {{ '/' | absolute_url | jsonify }},
+    "email": {{ site.email | jsonify }},
+    {% if site.phone and site.phone != "" %}"telephone": {{ site.phone | jsonify }},{% endif %}
+    "image": {{ '/assets/img/og-image.jpg' | absolute_url | jsonify }},
+    "logo": {{ '/assets/img/logo.png' | absolute_url | jsonify }},
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": {{ site.address.street | jsonify }},
+      "addressLocality": {{ site.address.city | jsonify }},
+      "addressRegion": {{ site.address.region | jsonify }},
+      "postalCode": {{ site.address.postal_code | jsonify }},
+      "addressCountry": "US"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Moscow, ID" },
+      { "@type": "City", "name": "Pullman, WA" },
+      { "@type": "Place", "name": "The Palouse" }
+    ],
+    "sameAs": [
+      "https://www.facebook.com/{{ site.facebook_username }}",
+      "https://www.instagram.com/{{ site.instagram_username }}"
+    ]
+  }
+  </script>
 </head>
