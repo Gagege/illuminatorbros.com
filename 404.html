@@ -1,0 +1,19 @@
+---
+layout: default
+title: Page not found
+permalink: /404.html
+noindex: true
+body_class: page-404
+---
+<section class="section section--night not-found" id="top" aria-labelledby="not-found-title">
+  {% include light-string.html class="light-string--dim" %}
+  <div class="container not-found__inner">
+    <p class="eyebrow eyebrow--glow">Error 404</p>
+    <h1 class="section-title" id="not-found-title">Looks like this page has gone&nbsp;dark.</h1>
+    <p class="lead">The page you're looking for doesn't exist. Let's get you back to somewhere bright.</p>
+    <div class="not-found__actions">
+      <a class="btn btn--primary btn--lg" href="{{ '/' | relative_url }}">Back to home</a>
+      <a class="btn btn--ghost btn--lg" href="{{ '/' | relative_url }}#contact-form">Get a free estimate</a>
+    </div>
+  </div>
+</section>
