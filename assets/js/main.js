@@ -1,13 +1,10 @@
 (function () {
   "use strict";
 
-  window.IB_READY = true;
-
-  var root = document.documentElement;
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var hasIO = "IntersectionObserver" in window;
 
-  root.classList.add("js");
+  document.documentElement.classList.add("js");
 
   function debounce(fn, wait) {
     var t;
@@ -97,34 +94,24 @@
     });
   }
 
-  /* Reveal on scroll */
-
-  var reveals = document.querySelectorAll(".reveal");
-  if (!hasIO || reduceMotion || !root.classList.contains("reveal-on")) {
-    reveals.forEach(function (el) {
-      el.classList.add("is-visible");
-    });
-  } else {
-    var revealer = new IntersectionObserver(
-      function (entries) {
-        var batch = 0;
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          var el = entry.target;
-          if (!el.style.getPropertyValue("--delay")) {
-            el.style.setProperty("--delay", batch * 90 + "ms");
-          }
-          batch++;
-          el.classList.add("is-visible");
-          revealer.unobserve(el);
-        });
-      },
-      { rootMargin: "0px 0px -6% 0px", threshold: 0.1 }
-    );
-    reveals.forEach(function (el) {
-      revealer.observe(el);
-    });
-  }
+  /* Anchor jumps only. Wheel and trackpad scrolling stay native. */
+  document.addEventListener("click", function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var link = e.target.closest("a[href]");
+    if (!link) return;
+    var url;
+    try {
+      url = new URL(link.href, window.location.href);
+    } catch (err) {
+      return;
+    }
+    if (url.origin !== window.location.origin || url.pathname !== window.location.pathname || url.hash.length < 2) return;
+    var target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+    if (window.history && history.pushState) history.pushState(null, "", url.hash);
+  });
 
   /* Gentle snowfall over the hero */
 
@@ -149,7 +136,7 @@
     };
 
     var resize = function () {
-      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var dpr = 1;
       var newWidth = canvas.clientWidth;
       var widthChanged = newWidth !== width;
       width = newWidth;
@@ -158,20 +145,25 @@
       canvas.height = Math.round(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       if (widthChanged) {
-        var count = Math.round(Math.min(120, (width * height) / 13000));
+        var count = Math.round(Math.min(48, (width * height) / 22000));
         flakes = [];
         for (var i = 0; i < count; i++) flakes.push(makeFlake(true));
       }
     };
 
-    var draw = function () {
+    var lastDraw = 0;
+    var draw = function (now) {
+      frame = requestAnimationFrame(draw);
+      if (now - lastDraw < 32) return;
+      var step = lastDraw ? Math.min(3, (now - lastDraw) / 32) : 1;
+      lastDraw = now;
       ctx.clearRect(0, 0, width, height);
       ctx.fillStyle = "#ffffff";
       for (var i = 0; i < flakes.length; i++) {
         var f = flakes[i];
-        f.y += f.speed + f.r * 0.12;
-        f.drift += 0.012;
-        f.x += Math.sin(f.drift) * 0.3;
+        f.y += (f.speed + f.r * 0.12) * step;
+        f.drift += 0.012 * step;
+        f.x += Math.sin(f.drift) * 0.3 * step;
         if (f.y > height + 6) {
           flakes[i] = makeFlake(false);
           continue;
@@ -181,7 +173,6 @@
         ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
         ctx.fill();
       }
-      frame = requestAnimationFrame(draw);
     };
 
     var start = function () {
@@ -209,6 +200,17 @@
       else start();
     });
 
+    var scrollIdle = null;
+    window.addEventListener(
+      "scroll",
+      function () {
+        stop();
+        clearTimeout(scrollIdle);
+        scrollIdle = setTimeout(start, 140);
+      },
+      { passive: true }
+    );
+
     start();
   }
 
@@ -223,34 +225,48 @@
     var switchState = lightSwitch && lightSwitch.querySelector(".switch__state");
     var styleNames = { warm: "Warm white", multi: "Multicolor", cool: "Cool white" };
     var interacted = false;
-    var index = 0;
-    var fragment = document.createDocumentFragment();
+    var bulbsBuilt = false;
 
-    studio.querySelectorAll("[data-lights]").forEach(function (path) {
-      var spacing = parseFloat(path.getAttribute("data-lights")) || 16;
-      var radius = parseFloat(path.getAttribute("data-r")) || 3.6;
+    var buildBulbs = function () {
+      if (bulbsBuilt) return;
+      bulbsBuilt = true;
+      var fragment = document.createDocumentFragment();
+      var probes = [];
 
-      path.getAttribute("d").split(/(?=M)/).forEach(function (segment) {
-        var probe = document.createElementNS(NS, "path");
-        probe.setAttribute("d", segment);
+      studio.querySelectorAll("[data-lights]").forEach(function (path) {
+        var spacing = parseFloat(path.getAttribute("data-lights")) || 16;
+        var radius = parseFloat(path.getAttribute("data-r")) || 3.6;
+        path.getAttribute("d").split(/(?=M)/).forEach(function (segment) {
+          var probe = document.createElementNS(NS, "path");
+          probe.setAttribute("d", segment);
+          probe._spacing = spacing;
+          probe._radius = radius;
+          probes.push(probe);
+        });
+      });
+
+      probes.forEach(function (probe) {
         bulbGroup.appendChild(probe);
+      });
+      probes.forEach(function (probe) {
         var length = probe.getTotalLength();
-        var count = Math.max(1, Math.round(length / spacing));
+        var count = Math.max(1, Math.round(length / probe._spacing));
         var step = length / count;
         for (var k = 0; k <= count; k++) {
           var point = probe.getPointAtLength(k * step);
           var bulb = document.createElementNS(NS, "circle");
           bulb.setAttribute("cx", point.x.toFixed(1));
           bulb.setAttribute("cy", point.y.toFixed(1));
-          bulb.setAttribute("r", String(radius));
+          bulb.setAttribute("r", String(probe._radius));
           bulb.setAttribute("class", "bulb");
-          bulb.style.setProperty("--i", String(index++));
           fragment.appendChild(bulb);
         }
+      });
+      probes.forEach(function (probe) {
         bulbGroup.removeChild(probe);
       });
-    });
-    bulbGroup.appendChild(fragment);
+      bulbGroup.appendChild(fragment);
+    };
 
     var setLights = function (on) {
       studio.classList.toggle("is-on", on);
@@ -274,20 +290,17 @@
       });
     });
 
-    if (hasIO) {
-      var studioObserver = new IntersectionObserver(
-        function (entries) {
-          if (!entries[0].isIntersecting) return;
-          studioObserver.disconnect();
-          setTimeout(function () {
-            if (!interacted) setLights(true);
-          }, reduceMotion ? 0 : 450);
-        },
-        { threshold: 0.45 }
-      );
-      studioObserver.observe(studio);
+    // Build and switch the lights on after first paint, not while the section scrolls in.
+    var lightUp = function () {
+      buildBulbs();
+      if (!interacted) setLights(true);
+    };
+    if (window.requestAnimationFrame) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(lightUp);
+      });
     } else {
-      setLights(true);
+      lightUp();
     }
   }
 

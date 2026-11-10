@@ -1,13 +1,13 @@
 <section class="section section--frost design" id="design" aria-labelledby="design-title">
   <div class="container design__grid">
     <div class="design__copy">
-      <p class="eyebrow reveal">Design your display</p>
-      <h2 class="section-title reveal" id="design-title">Warm and timeless, or bright and&nbsp;colorful?</h2>
-      <p class="lead reveal">
+      <p class="eyebrow">Design your display</p>
+      <h2 class="section-title" id="design-title">Warm and timeless, or bright and&nbsp;colorful?</h2>
+      <p class="lead">
         Every display is custom designed with you during your free consultation. Flip the switch and try a few
         looks, then we'll bring your favorite to life.
       </p>
-      <div class="design__cta reveal">
+      <div class="design__cta">
         <a class="btn btn--dark btn--lg" href="#contact-form" data-studio-cta>
           Plan my display
           <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
@@ -15,14 +15,10 @@
       </div>
     </div>
 
-    <div class="studio reveal" data-studio data-mode="warm">
+    <div class="studio" data-studio data-mode="warm">
       <svg class="studio__art" viewBox="0 0 640 420" role="img" aria-labelledby="studio-art-title">
         <title id="studio-art-title">Illustration of a house outlined with Christmas lights</title>
         <defs>
-          <filter id="bulb-glow" filterUnits="userSpaceOnUse" x="0" y="0" width="640" height="420">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="3.2" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
           <radialGradient id="studio-ambient">
             <stop offset="0" style="stop-color: var(--ambient)" stop-opacity=".75"/>
             <stop offset="1" style="stop-color: var(--ambient)" stop-opacity="0"/>
@@ -89,7 +85,7 @@
           <path data-lights="12" data-r="3" d="M168 348q38-30 76 0M356 348q38-30 76 0"/>
           <path data-lights="21" data-r="4.6" d="M276 368l-30 46M324 368l30 46"/>
         </g>
-        <g class="studio__bulbs" filter="url(#bulb-glow)" data-studio-bulbs></g>
+        <g class="studio__bulbs" data-studio-bulbs></g>
         <path class="studio__star" d="m76 150 4.4 8.9 9.8 1.4-7.1 6.9 1.7 9.8-8.8-4.6-8.8 4.6 1.7-9.8-7.1-6.9 9.8-1.4Z"/>
       </svg>
 

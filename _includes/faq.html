@@ -1,15 +1,15 @@
 <section class="section section--snow faq" id="faq" aria-labelledby="faq-title">
   <div class="container faq__grid">
     <div class="faq__intro">
-      <p class="eyebrow reveal">FAQ</p>
-      <h2 class="section-title reveal" id="faq-title">Questions? We've got&nbsp;answers.</h2>
-      <p class="lead reveal">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="section-title" id="faq-title">Questions? We've got&nbsp;answers.</h2>
+      <p class="lead">
         Don't see yours here? Email us at
         <a href="mailto:{{ site.email }}">{{ site.email }}</a> and we'll be happy to help.
       </p>
     </div>
 
-    <div class="faq__list reveal">
+    <div class="faq__list">
       {% for item in site.data.faq %}
       <details class="faq__item"{% if forloop.first %} open{% endif %}>
         <summary>

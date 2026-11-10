@@ -28,18 +28,12 @@
   <link rel="icon" href="{{ '/favicon.png' | relative_url }}" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | relative_url }}">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,30;1,9..144,400..700,30&family=Plus+Jakarta+Sans:wght@400..800&display=swap">
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ asset_version }}">
   {% if page.preload_hero %}
   <link rel="preload" as="image" type="image/webp" imagesrcset="{{ '/assets/img/hero-1200.webp' | relative_url }} 1200w, {{ '/assets/img/hero-2000.webp' | relative_url }} 2000w" imagesizes="100vw" fetchpriority="high">
   {% endif %}
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ asset_version }}">
 
-  <script>
-    document.documentElement.classList.add('js', 'reveal-on');
-    setTimeout(function () { if (!window.IB_READY) document.documentElement.classList.remove('reveal-on'); }, 3000);
-  </script>
+  <script>document.documentElement.classList.add("js");</script>
 
   <script type="application/ld+json">
   {
