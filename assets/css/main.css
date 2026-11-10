@@ -1,5 +1,33 @@
 /* Illuminator Brothers */
 
+/* Latin subsets, self-hosted so the first paint does not wait on a third-party stylesheet. */
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 500 600;
+  font-display: swap;
+  src: url("../fonts/fraunces-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/fraunces-italic-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("../fonts/plus-jakarta-sans-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   --night-950: #060a14;
   --night-900: #0a1020;
@@ -59,7 +87,6 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-h) + 8px);
 }
 
@@ -71,8 +98,6 @@ body {
   color: var(--ink);
   background: var(--snow);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
 body.nav-open {
@@ -233,10 +258,8 @@ button {
 
 .btn--ghost {
   color: #fff;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.28);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
 }
 
 .btn--ghost:hover {
@@ -289,12 +312,9 @@ button {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: rgba(8, 12, 24, 0.78);
-  -webkit-backdrop-filter: saturate(160%) blur(14px);
-  backdrop-filter: saturate(160%) blur(14px);
+  background: #080c18;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   opacity: 0;
-  transition: opacity 0.35s;
 }
 
 .site-nav.is-scrolled::before,
@@ -497,10 +517,6 @@ button {
   object-position: 62% 50%;
 }
 
-.js .hero__media img {
-  animation: lights-on 2.4s var(--ease) both;
-}
-
 .hero__media::after {
   content: "";
   position: absolute;
@@ -544,9 +560,7 @@ button {
   padding: 0.45rem 1rem 0.45rem 0.8rem;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+  background: rgba(10, 16, 32, 0.55);
   color: var(--gold-2);
   font-size: 0.86rem;
   font-weight: 600;
@@ -612,9 +626,7 @@ button {
   padding: 1.1rem 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius);
-  background: rgba(10, 16, 32, 0.55);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  background: rgba(10, 16, 32, 0.72);
   list-style: none;
   font-weight: 600;
   font-size: 0.95rem;
@@ -720,24 +732,24 @@ button {
 .glow {
   position: absolute;
   z-index: -1;
-  width: 540px;
-  height: 540px;
+  width: 640px;
+  height: 640px;
   border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.16;
+  background: radial-gradient(circle, var(--glow, #ffb547) 0%, transparent 68%);
+  opacity: 0.34;
   pointer-events: none;
 }
 
 .glow--gold {
+  --glow: #ffb547;
   top: 12%;
   left: -180px;
-  background: #ffb547;
 }
 
 .glow--red {
+  --glow: #e23b3b;
   right: -160px;
   bottom: -160px;
-  background: #e23b3b;
 }
 
 /* Light string */
@@ -773,8 +785,7 @@ button {
   margin: 18px 21px 0;
   border-radius: 50% 50% 50% 50% / 42% 42% 58% 58%;
   background: var(--c);
-  box-shadow: 0 4px 18px 2px var(--c);
-  animation: twinkle 3.2s ease-in-out infinite;
+  box-shadow: 0 0 8px var(--c);
 }
 
 .light-string li::before {
@@ -802,45 +813,20 @@ button {
 
 .light-string li:nth-child(3n + 2) {
   --c: var(--bulb-green);
-  animation-delay: -1.1s;
 }
 
 .light-string li:nth-child(3n) {
   --c: var(--bulb-gold);
-  animation-delay: -2.2s;
-}
-
-.light-string li:nth-child(4n) {
-  animation-duration: 2.4s;
-}
-
-.light-string li:nth-child(5n + 1) {
-  animation-duration: 4.1s;
 }
 
 .light-string--dim li {
   background: #343e60;
   box-shadow: none;
-  animation: none;
 }
 
 .light-string--dim li:nth-child(7n + 3) {
   background: var(--c);
-  box-shadow: 0 4px 18px 2px var(--c);
-  animation: flicker 5s infinite;
-}
-
-/* Reveal on scroll */
-
-.reveal-on .reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.8s var(--ease) var(--delay, 0ms), transform 0.8s var(--ease) var(--delay, 0ms);
-}
-
-.reveal-on .reveal.is-visible {
-  opacity: 1;
-  transform: none;
+  box-shadow: 0 0 8px var(--c);
 }
 
 /* About */
@@ -972,11 +958,6 @@ button {
   transition: translate 0.4s var(--ease), border-color 0.4s, background-color 0.4s;
 }
 
-.reveal-on .service-card.reveal {
-  transition: opacity 0.8s var(--ease) var(--delay, 0ms), transform 0.8s var(--ease) var(--delay, 0ms),
-    translate 0.4s var(--ease), border-color 0.4s, background-color 0.4s;
-}
-
 .service-card:hover {
   translate: 0 -6px;
   border-color: rgba(255, 198, 92, 0.38);
@@ -990,6 +971,7 @@ button {
   color: var(--on-night-3);
   font-family: var(--font-display);
   font-style: italic;
+  font-weight: 500;
   font-size: 1.05rem;
 }
 
@@ -1074,18 +1056,6 @@ button {
   height: auto;
 }
 
-.studio__stars circle {
-  animation: star 4s ease-in-out infinite;
-}
-
-.studio__stars circle:nth-child(2n) {
-  animation-delay: -1.3s;
-}
-
-.studio__stars circle:nth-child(3n) {
-  animation-delay: -2.7s;
-}
-
 .studio__ambient {
   opacity: 0;
   transition: opacity 1.2s var(--ease);
@@ -1106,12 +1076,11 @@ button {
 
 .bulb {
   fill: #3a4466;
-  transition: fill 0.45s ease calc(var(--i, 0) * 4ms);
+  transition: fill 0.35s ease;
 }
 
 .studio.is-on .bulb {
   fill: #ffd27a;
-  transition-delay: calc(var(--i, 0) * 13ms);
 }
 
 .studio.is-on[data-mode="cool"] .bulb {
@@ -1788,18 +1757,6 @@ address {
 
 /* Animations */
 
-@keyframes lights-on {
-  from {
-    filter: brightness(0.3) saturate(0.6);
-    transform: scale(1.06);
-  }
-
-  to {
-    filter: none;
-    transform: none;
-  }
-}
-
 @keyframes pulse {
   0% {
     box-shadow: 0 0 0 0 rgba(255, 198, 92, 0.6);
@@ -1811,43 +1768,6 @@ address {
 
   100% {
     box-shadow: 0 0 0 0 rgba(255, 198, 92, 0);
-  }
-}
-
-@keyframes twinkle {
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.5;
-  }
-}
-
-@keyframes flicker {
-  0%,
-  40%,
-  43%,
-  47%,
-  100% {
-    opacity: 1;
-  }
-
-  41%,
-  45% {
-    opacity: 0.2;
-  }
-}
-
-@keyframes star {
-  0%,
-  100% {
-    opacity: 0.9;
-  }
-
-  50% {
-    opacity: 0.3;
   }
 }
 
@@ -2093,10 +2013,6 @@ address {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
   *,
   *::before,
   *::after {
@@ -2104,10 +2020,5 @@ address {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     transition-delay: 0s !important;
-  }
-
-  .reveal-on .reveal {
-    opacity: 1;
-    transform: none;
   }
 }

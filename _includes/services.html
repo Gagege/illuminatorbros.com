@@ -5,14 +5,14 @@
 
   <div class="container">
     <div class="section-head section-head--center">
-      <p class="eyebrow eyebrow--glow reveal">What's included</p>
-      <h2 class="section-title reveal" id="services-title">Comprehensive service. No extra&nbsp;cost.</h2>
-      <p class="lead reveal">One simple package covers your whole display, from the first sketch to the final takedown.</p>
+      <p class="eyebrow eyebrow--glow">What's included</p>
+      <h2 class="section-title" id="services-title">Comprehensive service. No extra&nbsp;cost.</h2>
+      <p class="lead">One simple package covers your whole display, from the first sketch to the final takedown.</p>
     </div>
 
     <ol class="service-grid">
       {% for service in site.data.services %}
-      <li class="service-card reveal" style="--delay: {{ forloop.index0 | times: 90 }}ms">
+      <li class="service-card">
         <span class="service-card__step">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
         <span class="service-card__icon" aria-hidden="true">
           <svg class="icon"><use href="#i-{{ service.icon }}"/></svg>
@@ -23,7 +23,7 @@
       {% endfor %}
     </ol>
 
-    <div class="services__cta reveal">
+    <div class="services__cta">
       <p>Ready to be the brightest home on the block?</p>
       <a class="btn btn--primary" href="#contact-form">
         Get your free estimate

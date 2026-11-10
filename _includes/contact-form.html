@@ -4,20 +4,20 @@
 
   <div class="container estimate__grid">
     <div class="estimate__copy">
-      <p class="eyebrow eyebrow--glow reveal">Free estimate</p>
-      <h2 class="section-title reveal" id="estimate-title">Ready to light up your&nbsp;Christmas?</h2>
-      <p class="lead reveal">
+      <p class="eyebrow eyebrow--glow">Free estimate</p>
+      <h2 class="section-title" id="estimate-title">Ready to light up your&nbsp;Christmas?</h2>
+      <p class="lead">
         Fill out this quick form to get your free estimate. We'll help create a custom lighting plan that brings
         joy to your home this Christmas!
       </p>
 
-      <ol class="steps reveal">
+      <ol class="steps">
         <li><span>1</span><div><strong>Tell us about your home</strong>It only takes a minute.</div></li>
         <li><span>2</span><div><strong>Get your custom lighting plan</strong>We'll design a display around your home and style.</div></li>
         <li><span>3</span><div><strong>Enjoy the glow</strong>We install, maintain, and take it all down in the new year.</div></li>
       </ol>
 
-      <ul class="contact-list reveal" aria-label="Other ways to reach us">
+      <ul class="contact-list" aria-label="Other ways to reach us">
         {% if site.phone and site.phone != "" %}
         <li><a href="tel:{{ site.phone | remove: ' ' | remove: '-' | remove: '(' | remove: ')' | remove: '.' }}"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>{{ site.phone }}</a></li>
         {% endif %}
@@ -27,7 +27,7 @@
       </ul>
     </div>
 
-    <div class="estimate__card reveal">
+    <div class="estimate__card">
       <form class="form" action="{{ site.formspree_endpoint }}" method="POST" id="estimateForm" data-estimate-form data-email="{{ site.email }}">
         <div class="form__header">
           <h3>Request your free estimate</h3>
