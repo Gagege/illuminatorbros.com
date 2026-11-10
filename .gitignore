@@ -1,4 +1,5 @@
-
 _site/
+.bundle/
+vendor/bundle/
 img/.DS_Store
 .DS_Store

@@ -1,66 +1,61 @@
-@mixin transition-all()
-{
-    -webkit-transition: all 0.35s;
-    -moz-transition: all 0.35s;
-    transition: all 0.35s;
+@mixin transition-all($duration: 0.35s) {
+  transition: all $duration ease;
 }
 
-@mixin background-cover()
-{
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
+@mixin background-cover() {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-@mixin button-variant($color, $background, $border)
-{
-	color: $color;
-	background-color: $background;
-	border-color: $border;
-	@include transition-all;
-
-	&:hover,
-	&:focus,
-	&.focus,
-	&:active,
-	&.active,
-	.open > .dropdown-toggle & {
-		color: $color;
-		background-color: darken($background, 5%);
-    border-color: darken($border, 7%);
-	}
-	&:active,
-	&.active,
-	.open > .dropdown-toggle & {
-		background-image: none;
-	}
-	&.disabled,
-	&[disabled],
-	fieldset[disabled] & {
-		&,
-		&:hover,
-		&:focus,
-		&.focus,
-		&:active,
-		&.active {
-			background-color: $background;
-			border-color: $border;
-		}
-	}
-
-	.badge {
-		color: $background;
-		background-color: $color;
-	}
+@mixin display-font() {
+  font-family: "Fraunces", "Georgia", serif;
+  font-optical-sizing: auto;
 }
 
-@mixin sans-serif-font()
-{
-	font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+@mixin body-font() {
+  font-family: "Figtree", "Helvetica Neue", Arial, sans-serif;
 }
 
-@mixin serif-font()
-{
-	font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+@mixin button-variant($color, $background, $border) {
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+  @include transition-all;
+
+  &:hover,
+  &:focus,
+  &.focus,
+  &:active,
+  &.active,
+  .open > .dropdown-toggle & {
+    color: $color;
+    background-color: darken($background, 6%);
+    border-color: darken($border, 8%);
+  }
+
+  &:active,
+  &.active,
+  .open > .dropdown-toggle & {
+    background-image: none;
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      background-color: $background;
+      border-color: $border;
+    }
+  }
+
+  .badge {
+    color: $background;
+    background-color: $color;
+  }
 }

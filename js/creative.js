@@ -1,48 +1,68 @@
 /*!
- * Start Bootstrap - Creative Bootstrap Theme (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ * Illuminator Brothers site interactions
  */
 
-(function($) {
-    "use strict"; // Start of use strict
+(function ($) {
+  "use strict";
 
-    // jQuery for page scrolling feature - requires jQuery Easing plugin
-    $('a.page-scroll').bind('click', function(event) {
-        var $anchor = $(this);
-        $('html, body').stop().animate({
-            scrollTop: ($($anchor.attr('href')).offset().top - 50)
-        }, 1250, 'easeInOutExpo');
-        event.preventDefault();
-    });
+  $("a.page-scroll").bind("click", function (event) {
+    var $anchor = $(this);
+    var target = $($anchor.attr("href"));
+    if (!target.length) {
+      return;
+    }
+    $("html, body").stop().animate(
+      {
+        scrollTop: target.offset().top - 56,
+      },
+      900,
+      "easeInOutExpo"
+    );
+    event.preventDefault();
+  });
 
-    // Highlight the top nav as scrolling occurs
-    $('body').scrollspy({
-        target: '.navbar-fixed-top',
-        offset: 51
-    })
+  $("body").scrollspy({
+    target: ".navbar-fixed-top",
+    offset: 60,
+  });
 
-    // Closes the Responsive Menu on Menu Item Click
-    $('.navbar-collapse ul li a').click(function() {
-        $('.navbar-toggle:visible').click();
-    });
+  $(".navbar-collapse ul li a").click(function () {
+    $(".navbar-toggle:visible").click();
+  });
 
-    // Fit Text Plugin for Main Header
-    $("h1").fitText(
-        1.2, {
-            minFontSize: '35px',
-            maxFontSize: '65px'
-        }
+  $("#mainNav").affix({
+    offset: {
+      top: 80,
+    },
+  });
+
+  var revealNodes = document.querySelectorAll(".reveal, .service-item");
+  if ("IntersectionObserver" in window) {
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
     );
 
-    // Offset for Main Navigation
-    $('#mainNav').affix({
-        offset: {
-            top: 100
-        }
-    })
+    revealNodes.forEach(function (node, index) {
+      if (node.classList.contains("service-item")) {
+        node.style.transitionDelay = index * 90 + "ms";
+      }
+      observer.observe(node);
+    });
+  } else {
+    revealNodes.forEach(function (node) {
+      node.classList.add("is-visible");
+    });
+  }
 
-    // Initialize WOW.js Scrolling Animations
+  if (typeof WOW !== "undefined") {
     new WOW().init();
-
-})(jQuery); // End of use strict
+  }
+})(jQuery);

@@ -1,38 +1,33 @@
 <section id="contact-form" class="bg-dark">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2>Ready to Light Up Your Christmas?</h2>
-                <p class="text-faded">Fill out this quick form to get your free estimate. We'll help create a custom
-                    lighting plan that brings joy to your home this Christmas!</p>
+        <div class="estimate-shell">
+            <div class="estimate-intro">
+                <h2 class="section-heading">Ready to light up Christmas?</h2>
+                <p class="section-lede">Tell us a little about your place and we’ll send a free estimate with a custom lighting plan.</p>
                 <hr class="light">
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <form action="https://formspree.io/f/xdkozodk" method="POST" class="contact-form" id="estimateForm">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" name="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" name="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Home Address</label>
-                        <input type="text" name="address" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Additional Details (optional)</label>
-                        <textarea name="message" class="form-control" rows="3"></textarea>
-                    </div>
-                    <input type="hidden" name="_subject" value="New Estimate Request">
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary btn-xl">Request Estimate</button>
-                    </div>
-                </form>
-            </div>
+            <form action="https://formspree.io/f/xdkozodk" method="POST" class="contact-form" id="estimateForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input id="name" type="text" name="name" class="form-control" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input id="email" type="email" name="email" class="form-control" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="address">Home Address</label>
+                    <input id="address" type="text" name="address" class="form-control" required autocomplete="street-address">
+                </div>
+                <div class="form-group">
+                    <label for="message">Additional Details (optional)</label>
+                    <textarea id="message" name="message" class="form-control" rows="3"></textarea>
+                </div>
+                <input type="hidden" name="_subject" value="New Estimate Request">
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-xl">Request Estimate</button>
+                </div>
+            </form>
         </div>
     </div>
 </section>
