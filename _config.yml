@@ -20,6 +20,10 @@ address:
   city: Moscow
   region: ID
   postal_code: "83843"
+  latitude: 46.7393
+  longitude: -117.0073
+
+price_range: "$1000 - $2000"
 
 service_area: Moscow, Pullman, and surrounding Palouse communities
 

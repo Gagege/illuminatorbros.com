@@ -1,10 +1,10 @@
 <section class="hero" id="top" aria-labelledby="hero-title">
-  <div class="hero__media" aria-hidden="true">
+  <div class="hero__media">
     <picture>
       <source type="image/webp" srcset="{{ '/assets/img/hero-1200.webp' | relative_url }} 1200w, {{ '/assets/img/hero-2000.webp' | relative_url }} 2000w" sizes="100vw">
-      <img src="{{ '/assets/img/hero-2000.jpg' | relative_url }}" srcset="{{ '/assets/img/hero-1200.jpg' | relative_url }} 1200w, {{ '/assets/img/hero-2000.jpg' | relative_url }} 2000w" sizes="100vw" width="2000" height="1121" alt="" fetchpriority="high">
+      <img src="{{ '/assets/img/hero-2000.jpg' | relative_url }}" srcset="{{ '/assets/img/hero-1200.jpg' | relative_url }} 1200w, {{ '/assets/img/hero-2000.jpg' | relative_url }} 2000w" sizes="100vw" width="2000" height="1121" alt="White colonial home with warm white Christmas lights along the rooflines, lit trees on the porch, and wrapped trees in the front yard" fetchpriority="high">
     </picture>
-    <canvas class="hero__snow" data-snow></canvas>
+    <canvas class="hero__snow" data-snow aria-hidden="true"></canvas>
   </div>
 
   <div class="container hero__content">
